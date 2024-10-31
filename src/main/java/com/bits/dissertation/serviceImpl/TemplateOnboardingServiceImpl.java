@@ -98,6 +98,6 @@ public class TemplateOnboardingServiceImpl implements TemplateOnboardingService 
 		List<TemplateRegistry> allTemplateDetails = templateRepo.findAll();		
 		logger.info("Template details : {}",allTemplateDetails);
 		
-		return allTemplateDetails;	
+		return allTemplateDetails;
 	}
 }
