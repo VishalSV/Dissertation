@@ -2,6 +2,7 @@ package com.bits.dissertation.controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,6 +65,20 @@ public class TemplateOnboarding {
 	public ResponseEntity<Object> getTemplate(@PathVariable(required = true) String templateName){
 		
 		TemplateRegistry existingTemplate = templateOnboardingService.getTemplateDetails(templateName);
+		
+		if(ObjectUtils.isEmpty(existingTemplate)){
+			return new ResponseEntity<>("Requested Template does not exist.", HttpStatus.NOT_FOUND);
+		}
+		else {
+			return new ResponseEntity<>("Requested Template: "+ existingTemplate, HttpStatus.OK);
+		}
+		
+	}
+	
+	@GetMapping(path = "/admin/fetch")
+	public ResponseEntity<Object> getAllTemplate(){
+		
+		List<TemplateRegistry> existingTemplate = templateOnboardingService.getAllTemplateDetails();
 		
 		if(ObjectUtils.isEmpty(existingTemplate)){
 			return new ResponseEntity<>("Requested Template does not exist.", HttpStatus.NOT_FOUND);

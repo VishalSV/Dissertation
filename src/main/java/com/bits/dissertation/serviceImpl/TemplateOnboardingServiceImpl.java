@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,5 +90,14 @@ public class TemplateOnboardingServiceImpl implements TemplateOnboardingService 
         templateRepo.save(templateDetails);
         
         return "The Template is update with Name: "+fileName;
+	}
+
+	@Override
+	public List<TemplateRegistry> getAllTemplateDetails() {
+		
+		List<TemplateRegistry> allTemplateDetails = templateRepo.findAll();		
+		logger.info("Template details : {}",allTemplateDetails);
+		
+		return allTemplateDetails;	
 	}
 }
