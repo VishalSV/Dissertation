@@ -18,7 +18,7 @@ public class TemplateOnboardingServiceHelper {
 			
             Document doc = Jsoup.parse(file.getInputStream(), "UTF-8", "", Parser.htmlParser());
             // Check for errors
-            if (checkForErrors(doc) && checkForContentType(file)) {
+            if (checkForErrors(doc) || checkForContentType(file)) {
                 System.out.println("The HTML file contains errors.");
                 return false;
             } else {
